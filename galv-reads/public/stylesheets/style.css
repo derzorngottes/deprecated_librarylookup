@@ -1,0 +1,59 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.title-bar {
+  position: absolute;
+  padding-left: 50px;
+}
+
+.t-bar {
+  vertical-align: middle;
+  position: relative;
+  display: inline-block;
+  padding-right: 20px;
+  font-size: 40px;
+  font-weight: lighter;
+}
+
+.container {
+  padding: 3%;
+  margin-top: 10%;
+  position: relative;
+  display: inline-block;
+  height: 80%;
+}
+
+.spacer {
+  width: 2%;
+  display: inline-block;
+  float: left;
+  height: 100%;
+}
+
+.authors-img, .books-img {
+  position: relative;
+  float: left;
+  display: inline-block;
+  width: 49%;
+}
+
+.authors {
+  border: 2px solid red;
+}
+
+.books {
+  border: 2px solid yellow;
+}
+
+.container-imgs {
+  float: left;
+  position: relative;
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+}
