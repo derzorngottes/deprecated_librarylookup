@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+  div.title-bar
+    img(src= '/assets/book-icon2.png' height='50' width='50' class='t-bar' id='logo')
+    h2(class='t-bar' id='header-text') Galvanize Reads
+
+  div.sidebar
+    div.authors-div
+      p Authors
+        p Book
+    div.books-div
+      p Books
+        p Person
+
+  div.container
+    div.book1
+      img(src='book.jpg' height='100', width='100' class='books-display-book')
+      h2(class='book-title') Book One
+      p(class='byline') By Author One & Author 2
+      p(class='genre') Genre
+      p(class='description') Description
+
+
+  div.footer
+    p(id='footer-text') footer goes here

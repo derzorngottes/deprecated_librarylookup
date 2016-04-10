@@ -1,0 +1,9 @@
+extends ../layout
+
+block content
+  h1 Are you sure you want to delete this book?
+
+  form(action="/books/" + thisBook.id + "/?_method=DELETE", method="POST")
+    div
+      input(type="submit" value="Delete Book")
+      a(href="/books/") cancel
