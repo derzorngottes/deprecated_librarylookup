@@ -17,16 +17,16 @@ exports.up = function(knex, Promise) {
     }),
     knex.schema.createTable('books_authors', function (table) {
       table.increments();
-      table.number('bookId');
-      table.number('authorId');
+      table.integer('bookId');
+      table.integer('authorId');
     })
   ]);
 };
 
 exports.down = function(knex, Promise) {
   return Promise.all([
-    knex.schema.dropTable('books');
-    knex.schema.dropTable('authors');
-    knex.schema.dropTable('books_authors');
+    knex.schema.dropTable('books'),
+    knex.schema.dropTable('authors'),
+    knex.schema.dropTable('books_authors')
   ]);
 };
