@@ -1,0 +1,93 @@
+html {
+  background-color: #DDDDDD;
+  min-height: 100%;
+  width: 100%;
+}
+
+body {
+  font: 0.875em "Playfair Display", serif;
+  margin: 0 0 0%;
+  height: 70%;
+  width: 100%;
+  display: block;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.title-bar {
+  position: absolute;
+  font-weight: 900;
+  width: 100%;
+  height: 15%;
+  background-color: #fe9f97;
+}
+
+.t-bar {
+  vertical-align: middle;
+  position: relative;
+  display: inline-block;
+  padding-right: 1%;
+  font-size: 2.5em;
+  font-weight: lighter;
+}
+
+.container {
+  margin-top: 10%;
+  position: relative;
+  display: inline-block;
+  height: 70%;
+  width: 100%;
+}
+
+.sidebar {
+  font-family: "Helvetica", sans-serif;
+  top: 30%;
+  width: 15%;
+  float: left;
+  display: inline-block;
+  margin-right: 5%;
+  margin-left: 5%;
+}
+
+.booklist {
+  font-family: "Helvetica", sans-serif;
+  display: inline-block;
+  float: right;
+  width: 60%;
+  margin-right: 10%;
+}
+
+.booklist-content {
+  display: inline-block;
+  margin-right: 3%;
+}
+
+#picture {
+  width: 15%;
+  height: 100%;
+}
+
+#content {
+  width: 75%;
+}
+
+#logo {
+  margin-left: 5%;
+}
+
+#footer-text {
+  margin-left: 9.75%;
+}
+
+.footer {
+  background-color: #fbae17;
+  left: 0;
+  bottom: 0;
+  height: 80%;
+  width: 100%;
+  padding-top: .5%;
+  font-weight: 900;
+  font-size: 2.5em;
+}

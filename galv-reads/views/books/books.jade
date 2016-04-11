@@ -1,26 +1,36 @@
-extends ../layout
+doctype html
 
-block content
-  div.title-bar
-    img(src= '/assets/book-icon2.png' height='50' width='50' class='t-bar' id='logo')
-    h2(class='t-bar' id='header-text') Galvanize Reads
+html
 
-  div.sidebar
-    div.authors-div
-      p Authors
-        p Book
-    div.books-div
-      p Books
-        p Person
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/books-style.css')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=EB+Garamond|Playfair+Display:400,900')
 
-  div.container
-    div.book1
-      img(src='book.jpg' height='100', width='100' class='books-display-book')
-      h2(class='book-title') Book One
-      p(class='byline') By Author One & Author 2
-      p(class='genre') Genre
-      p(class='description') Description
+  body
+    div.title-bar
+      img(src= '/assets/book-icon2.png' height='50' width='50' class='t-bar' id='logo')
+      h2(class='t-bar' id='header-text') Galvanize Reads
 
+    div.container
+      div.sidebar
+        div.authors-div
+          p Authors
+            p Book
+        div.books-div
+          p Books
+            p Person
+
+      div.booklist
+        for book in allBooks
+          div(class='book')
+            div.booklist-content(id='picture')
+              img(src=book.coverurl img='100' height='150' class='books-cover')
+            div.booklist-content(id='content')
+              h2(class='books-title') #{book.title}
+              p(class='books-byline') Authors
+              p(class='books-genre') #{book.genre}
+              p(class='books-description') #{book.description}
 
   div.footer
     p(id='footer-text') footer goes here
