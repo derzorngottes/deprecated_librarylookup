@@ -9,6 +9,9 @@ function Books() {
 function Authors() {
   return knex('authors');
 }
+function BooksAuthors() {
+  return knex('books_authors');
+}
 
 router.use(methodOverride('_method'));
 
