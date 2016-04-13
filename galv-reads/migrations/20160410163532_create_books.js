@@ -17,8 +17,8 @@ exports.up = function(knex, Promise) {
     }),
     knex.schema.createTable('books_authors', function (table) {
       table.increments();
-      table.integer('bookId');
-      table.integer('authorId');
+      table.integer('bookid');
+      table.integer('authorid');
     })
   ]);
 };
