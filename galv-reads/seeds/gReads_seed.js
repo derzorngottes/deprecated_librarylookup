@@ -66,11 +66,13 @@ exports.seed = function(knex, Promise) {
   .then(function (data) {
     return Promise.join (
       knex('books_authors').insert({bookid: data.books.pynutId, authorid: data.authors.alexId}),
+      knex('books_authors').insert({bookid: data.books.pynutId, authorid: data.authors.annaId}),
+      knex('books_authors').insert({bookid: data.books.pynutId, authorid: data.authors.steveId}),
       knex('books_authors').insert({bookid: data.books.thinkpyId, authorid: data.authors.allenId}),
       knex('books_authors').insert({bookid: data.books.learnreactId, authorid: data.authors.bonnieId}),
       knex('books_authors').insert({bookid: data.books.jses6Id, authorid: data.authors.kyleId}),
-      knex('books_authors').insert({bookid: data.books.jsscopeId, authorid: data.authors.annaId}),
-      knex('books_authors').insert({bookid: data.books.jsasyncId, authorid: data.authors.steveId})
+      knex('books_authors').insert({bookid: data.books.jsscopeId, authorid: data.authors.kyleId}),
+      knex('books_authors').insert({bookid: data.books.jsasyncId, authorid: data.authors.kyleId})
     );
   });
 };
