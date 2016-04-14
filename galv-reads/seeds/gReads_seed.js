@@ -45,12 +45,12 @@ exports.seed = function(knex, Promise) {
     .then(function(authorids) {
       return {
         authors: {
-          alexId: ids[0][0],
-          allenId: ids[1][0],
-          bonnieId: ids[2][0],
-          kyleId: ids[3][0],
-          annaId: ids[4][0],
-          steveId: ids[5][0]
+          alexId: authorids[0][0],
+          allenId: authorids[1][0],
+          bonnieId: authorids[2][0],
+          kyleId: authorids[3][0],
+          annaId: authorids[4][0],
+          steveId: authorids[5][0]
         },
         books: {
           pynutId: pynutId,

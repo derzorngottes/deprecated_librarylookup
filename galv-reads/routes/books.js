@@ -31,13 +31,19 @@ function BooksAuthors() {
 
 router.use(methodOverride('_method'));
 
+// router.get('/books', function(req, res, next) {
+//   Books().select().then(function(records){
+//     Authors().select().then(function(authors) {
+//       BooksAuthors().select().then(function(howjoin) {
+//         res.render('books/books', { allBooks: records, allAuthors: authors, howRel: howjoin });
+//       });
+//     });
+//   });
+// });
+
 router.get('/books', function(req, res, next) {
-  Books().select().then(function(records){
-    Authors().select().then(function(authors) {
-      BooksAuthors().select().then(function(howjoin) {
-        res.render('books/books', { allBooks: records, allAuthors: authors, howRel: howjoin });
-      });
-    });
+  knex.select().from('books').innerJoin('books_authors', 'books.id', 'books_authors.bookid').innerJoin('authors', 'books_authors.authorid', 'authors.id').then(function(results) {
+    res.render('books/books', { joined: results});
   });
 });
 
@@ -48,6 +54,12 @@ router.get('/books/new', function(req, res, next) {
 router.get('/books/:id', function(req, res, next) {
   Books().where({ id: req.params.id }).first().then(function(record) {
     res.render('books/display', { thisBook: record});
+  });
+});
+
+router.get('/authors', function(req, res, next) {
+  Authors().select().then(function(results) {
+    res.render('authors', { allAuthors: results});
   });
 });
 
