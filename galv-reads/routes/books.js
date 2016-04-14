@@ -31,19 +31,18 @@ function BooksAuthors() {
 
 router.use(methodOverride('_method'));
 
-// router.get('/books', function(req, res, next) {
-//   Books().select().then(function(records){
-//     Authors().select().then(function(authors) {
-//       BooksAuthors().select().then(function(howjoin) {
-//         res.render('books/books', { allBooks: records, allAuthors: authors, howRel: howjoin });
-//       });
-//     });
-//   });
-// });
-
 router.get('/books', function(req, res, next) {
   knex.select().from('books').innerJoin('books_authors', 'books.id', 'books_authors.bookid').innerJoin('authors', 'books_authors.authorid', 'authors.id').then(function(results) {
-    res.render('books/books', { joined: results});
+    var indexer = {};
+    for(var i=0; i <results.length; i++){
+      if(!(results[i].bookid in indexer)) {
+        indexer[results[i].bookid] = [results[i].authorid];
+      }
+      else {
+        indexer[results[i].bookid].push(results[i].authorid);
+      }
+    }
+    res.render('books/books', { joined: results, index: indexer});
   });
 });
 
