@@ -32,11 +32,6 @@ function BooksAuthors() {
 router.use(methodOverride('_method'));
 
 router.get('/books', function(req, res, next) {
-
-  // Books().select().then(function (records) {
-  //   res.render('books/books', {allBooks: records});
-  // });
-
   Books().select().then(function(records){
     Authors().select().then(function(authors) {
       BooksAuthors().select().then(function(howjoin) {
