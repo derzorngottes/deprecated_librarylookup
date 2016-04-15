@@ -36,13 +36,15 @@ router.get('/books', function(req, res, next) {
     var indexer = {};
     for(var i=0; i <results.length; i++){
       if(!(results[i].bookid in indexer)) {
-        indexer[results[i].bookid] = [results[i].authorid];
+        indexer[results[i].bookid] = [results[i]];
+        indexer[results[i].bookid][1] = [];
+        indexer[results[i].bookid][1].push(results[i].firstname + ' ' + results[i].lastname);
       }
       else {
-        indexer[results[i].bookid].push(results[i].authorid);
+        indexer[results[i].bookid][1].push(results[i].firstname + ' ' + results[i].lastname);
       }
     }
-    res.render('books/books', { joined: results, index: indexer});
+    res.render('books/books', { index: indexer });
   });
 });
 

@@ -25,15 +25,17 @@ html
         a(href='/books/new') new
 
       div.booklist
-        for item in joined
+        for book in index
           div(class='book')
             div.booklist-content(id='picture')
-              img(src=item.coverurl img='100' height='150' class='books-cover')
+              img(src=book[0].coverurl img='100' height='150' class='books-cover')
             div.booklist-content(id='content')
-              a(href='/books/#{item.id}' class='books-title') #{item.title}
-              p(class='books-byline') #{item.firstname} #{item.lastname}
-              p(class='books-genre') #{item.genre}
-              p(class='books-description') #{item.description}
+              a(href='/books/#{book[0].bookid}' class='books-title') #{book[0].title}
+              div.books-byline
+                for author in book[1]
+                  p(class=byliner) #{author}
+              p(class='books-genre') #{book[0].genre}
+              p(class='books-description') #{book[0].description}
 
   div.footer
     p(id='footer-text') footer goes here
