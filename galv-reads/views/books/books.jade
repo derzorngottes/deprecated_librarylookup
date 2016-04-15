@@ -38,4 +38,6 @@ html
               p(class='books-description') #{book[0].description}
 
   div.footer
-    p(id='footer-text') footer goes here
+    form(action="/books/genre", method="GET")
+      input(type='text' name='searchbar' class='search')
+      input(type='button' name='search' value='search')

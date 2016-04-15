@@ -1,13 +1,5 @@
 /* WORKFLOW:
 
-1. check seed file from current open directory & build out?
-
-2. get authors table loaded.bs.modal
-
-3. build relationship/joins table
-
-4. get promises working
-
 5. make other CRUD stuff working
 
 6. add oAuth functionality
@@ -54,7 +46,13 @@ router.get('/books/new', function(req, res, next) {
 
 router.get('/books/:id', function(req, res, next) {
   Books().where({ id: req.params.id }).first().then(function(record) {
-    res.render('books/display', { thisBook: record});
+    res.render('books/display', { genre: false, thisBook: record});
+  });
+});
+
+router.get('/books/genre/:genre', function(req, res, next) {
+  Books().where({ genre: req.params.genre }).select().then(function(booksByGenre) {
+    res.render('books/display', { genre: true, booksByGenre: booksByGenre });
   });
 });
 
