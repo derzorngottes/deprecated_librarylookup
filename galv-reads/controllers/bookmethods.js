@@ -36,7 +36,7 @@ module.exports = {
     return knex('books').insert({ title: metadata.title, genre: metadata.genre, coverUrl: metadata.coverUrl, description: metadata.description, authors: metadata.authors });
   },
   editBook: function(metadata) {
-    return knex('books').where({ id: metadata.id }).update({ title: metadata.title, genre: metadata.genre, coverUrl: metadata.coverUrl, description: metadata.description, authors: metadata.authors });
+    return knex('books').where({ id: metadata.id }).first().update({ title: metadata.title, genre: metadata.genre, coverUrl: metadata.coverUrl, description: metadata.description, authors: metadata.authors });
   },
   deleteBook: function(queryId) {
     return knex('books').where({ id: queryId }).del();

@@ -1,19 +1,19 @@
+/* to do
+
+1. Make edit, add, and delete routes work for books and authors independently
+2. Then alter the routes so that they remove the whole record and re-insert it
+3. Then add user validations following method from Finder example
+4. Then add error handling
+5. Then tidy up layout
+
+
+*/
+
 var express = require('express');
 var router = express.Router();
 var methodOverride = require('method-override');
 var bookmethods = require('../controllers/bookmethods.js');
 var authormethods = require('../controllers/authormethods.js');
-
-var knex = require('../db/knex');
-function Books() {
-  return knex('books');
-}
-function Authors() {
-  return knex('authors');
-}
-function BooksAuthors() {
-  return knex('books_authors');
-}
 
 router.use(methodOverride('_method'));
 
@@ -27,23 +27,8 @@ router.get('/books', function(req, res, next) {
   }
   else {
     bookmethods.booksJoinAuthors().then(function(records) {
-      console.log(records);
       res.render('books/books', { index: records });
     });
-    // knex.select().from('books').innerJoin('books_authors', 'books.id', 'books_authors.bookid').innerJoin('authors', 'books_authors.authorid', 'authors.id').then(function(results) {
-    //   var indexer = {};
-    //   for(var i=0; i <results.length; i++){
-    //     if(!(results[i].bookid in indexer)) {
-    //       indexer[results[i].bookid] = [results[i]];
-    //       indexer[results[i].bookid][1] = [];
-    //       indexer[results[i].bookid][1].push(results[i].firstname + ' ' + results[i].lastname);
-    //     }
-    //     else {
-    //       indexer[results[i].bookid][1].push(results[i].firstname + ' ' + results[i].lastname);
-    //     }
-    //   }
-    //   res.render('books/books', { index: indexer });
-    // });
   }
 });
 
@@ -64,33 +49,33 @@ router.get('/books/genre/:genre', function(req, res, next) {
 });
 
 router.post('/books', function(req, res, next) {
-  Books().insert({ title: req.body.title, genre: req.body.genre, coverUrl: req.body.coverUrl, description: req.body.description, authors: req.body.authors }).then(function() {
-    res.redirect('/books');
+  bookmethods.addBook(req.body).then(function() {
+    res.redirect('books');
   });
 });
 
 router.get('/books/:id/edit', function(req, res, next) {
-  Books().where({ id: req.params.id }).first().then(function (record) {
+  bookmethods.getBookFromId(req.params.id).then(function(record) {
     res.render('books/edit', { thisBook: record });
   });
 });
 
 router.put('/books/:id', function(req, res, next) {
-  Books().where({ id: req.params.id }).update({ title: req.body.title, genre: req.body.genre, coverUrl: req.body.coverUrl, description: req.body.description, authors: req.body.authors }).then(function (record) {
-    res.redirect('/books/' + req.params.id);
+  bookmethods.editBook(req.body).then(function(record) {
+    res.redirect('books/' + req.params.id);
   });
 });
 
 router.get('/books/:id/delete', function(req, res, next) {
-  Books().where({ id: req.params.id }).first().then(function (record) {
-    res.render('books/delete', {thisBook: record});
+  bookmethods.getBookFromId(req.params.id).then(function(record) {
+    res.render('books/delete', { thisBook: record });
   });
 });
 
 router.delete('/books/:id', function(req, res, next) {
-  Books().where({id: req.params.id}).del().then(function(results) {
-    res.redirect('/books/');
-  })
+  bookmethods.deleteBook(req.params.id).then(function() {
+    res.redirect('books');
+  });
 });
 
 //Author routes
