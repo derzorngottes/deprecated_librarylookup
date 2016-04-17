@@ -3,16 +3,16 @@ var router = express.Router();
 var methodOverride = require('method-override');
 var bookmethods = require('../controllers/bookroutes.js');
 
-// var knex = require('../db/knex');
-// function Books() {
-//   return knex('books');
-// }
-// function Authors() {
-//   return knex('authors');
-// }
-// function BooksAuthors() {
-//   return knex('books_authors');
-// }
+var knex = require('../db/knex');
+function Books() {
+  return knex('books');
+}
+function Authors() {
+  return knex('authors');
+}
+function BooksAuthors() {
+  return knex('books_authors');
+}
 
 router.use(methodOverride('_method'));
 
@@ -46,18 +46,13 @@ router.get('/books/new', function(req, res, next) {
 
 router.get('/books/:id', function(req, res, next) {
   bookmethods.getBookFromId(req.params.id).then(function(record) {
-    console.log(record);
     res.render('books/display', { genre: false, thisBook: record });
   });
-
-  // Books().where({ id: req.params.id }).first().then(function(record) {
-  //   res.render('books/display', { genre: false, thisBook: record});
-  // });
 });
 
 router.get('/books/genre/:genre', function(req, res, next) {
-  Books().where({ genre: req.params.genre }).select().then(function(booksByGenre) {
-    res.render('books/display', { genre: true, booksByGenre: booksByGenre });
+  bookmethods.getBookByGenre(req.params.genre).then(function(records) {
+    res.render('books/display', { genre: true, booksByGenre: records});
   });
 });
 

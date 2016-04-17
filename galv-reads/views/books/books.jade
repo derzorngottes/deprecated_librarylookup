@@ -34,7 +34,8 @@ html
               div.books-byline
                 for author in book[1]
                   p(class=byliner) #{author}
-              p(class='books-genre') #{book[0].genre}
+              p(class='books-genre')
+                a(href='/books/genre/#{book[0].genre}') #{book[0].genre}
               p(class='books-description') #{book[0].description}
 
     div.footer
