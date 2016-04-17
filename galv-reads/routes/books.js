@@ -1,17 +1,18 @@
 var express = require('express');
 var router = express.Router();
 var methodOverride = require('method-override');
+var bookmethods = require('../controllers/bookroutes.js');
 
-var knex = require('../db/knex');
-function Books() {
-  return knex('books');
-}
-function Authors() {
-  return knex('authors');
-}
-function BooksAuthors() {
-  return knex('books_authors');
-}
+// var knex = require('../db/knex');
+// function Books() {
+//   return knex('books');
+// }
+// function Authors() {
+//   return knex('authors');
+// }
+// function BooksAuthors() {
+//   return knex('books_authors');
+// }
 
 router.use(methodOverride('_method'));
 
@@ -44,9 +45,14 @@ router.get('/books/new', function(req, res, next) {
 });
 
 router.get('/books/:id', function(req, res, next) {
-  Books().where({ id: req.params.id }).first().then(function(record) {
-    res.render('books/display', { genre: false, thisBook: record});
+  bookmethods.getBookFromId(req.params.id).then(function(record) {
+    console.log(record);
+    res.render('books/display', { genre: false, thisBook: record });
   });
+
+  // Books().where({ id: req.params.id }).first().then(function(record) {
+  //   res.render('books/display', { genre: false, thisBook: record});
+  // });
 });
 
 router.get('/books/genre/:genre', function(req, res, next) {

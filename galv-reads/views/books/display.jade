@@ -9,19 +9,27 @@ block content
       p Books
         p Person
 
-  h1 title: #{thisBook.title}
-  h1 genre: #{thisBook.genre}
-  h1 authors: #{thisBook.authors}
-  p description: #{thisBook.description}
+  div.displayBook
+    if genre
+      each book in booksByGenre
+        h1 title: book.title
+        h1 genre: book.genre
+        h1 authors: book.authors
 
-  form(action="/edit", method="post")
-    div
-      a(href="/books/" + thisBook.id + "/edit") Edit
+    else
+      h1 title: #{thisBook.title}
+      h1 genre: #{thisBook.genre}
+      h1 authors: #{thisBook.authors}
+      p description: #{thisBook.description}
 
-  form(action="/delete", method="post")
-    div
-      a(href="/books/" + thisBook.id + "/delete") Delete
+      form(action="/edit", method="post")
+        div
+          a(href="/books/" + thisBook.id + "/edit") Edit
 
-  form(action="/", method="get")
-    div
-      a(href="/books/") Back
+      form(action="/delete", method="post")
+        div
+          a(href="/books/" + thisBook.id + "/delete") Delete
+
+      form(action="/", method="get")
+        div
+          a(href="/books/") Back
