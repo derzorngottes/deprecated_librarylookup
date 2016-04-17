@@ -24,20 +24,27 @@ function BooksAuthors() {
 router.use(methodOverride('_method'));
 
 router.get('/books', function(req, res, next) {
-  knex.select().from('books').innerJoin('books_authors', 'books.id', 'books_authors.bookid').innerJoin('authors', 'books_authors.authorid', 'authors.id').then(function(results) {
-    var indexer = {};
-    for(var i=0; i <results.length; i++){
-      if(!(results[i].bookid in indexer)) {
-        indexer[results[i].bookid] = [results[i]];
-        indexer[results[i].bookid][1] = [];
-        indexer[results[i].bookid][1].push(results[i].firstname + ' ' + results[i].lastname);
+  if (req.query['search']) {
+    Books().where({ title: req.query.search }).first().then(function(record) {
+      res.render('books/display', { genre: false, thisBook: record });
+    });
+  }
+  else {
+    knex.select().from('books').innerJoin('books_authors', 'books.id', 'books_authors.bookid').innerJoin('authors', 'books_authors.authorid', 'authors.id').then(function(results) {
+      var indexer = {};
+      for(var i=0; i <results.length; i++){
+        if(!(results[i].bookid in indexer)) {
+          indexer[results[i].bookid] = [results[i]];
+          indexer[results[i].bookid][1] = [];
+          indexer[results[i].bookid][1].push(results[i].firstname + ' ' + results[i].lastname);
+        }
+        else {
+          indexer[results[i].bookid][1].push(results[i].firstname + ' ' + results[i].lastname);
+        }
       }
-      else {
-        indexer[results[i].bookid][1].push(results[i].firstname + ' ' + results[i].lastname);
-      }
-    }
-    res.render('books/books', { index: indexer });
-  });
+      res.render('books/books', { index: indexer });
+    });
+  }
 });
 
 router.get('/books/new', function(req, res, next) {
