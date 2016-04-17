@@ -1,11 +1,3 @@
-/* WORKFLOW:
-
-5. make other CRUD stuff working
-
-6. add oAuth functionality
-
-*/
-
 var express = require('express');
 var router = express.Router();
 var methodOverride = require('method-override');
