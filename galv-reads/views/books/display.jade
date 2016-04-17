@@ -1,10 +1,6 @@
 extends ../layout
 
 block content
-  div.title-bar
-    img(src= '/assets/book-icon2.png' height='50' width='50' class='t-bar' id='logo')
-    h2(class='t-bar' id='header-text') Galvanize Reads
-
   div.sidebar
     div.authors-div
       p Authors
@@ -29,6 +25,3 @@ block content
   form(action="/", method="get")
     div
       a(href="/books/") Back
-
-  div.footer
-    p(id='footer-text') footer goes here

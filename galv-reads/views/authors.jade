@@ -33,5 +33,7 @@ html
               a(href='/authors/#{author.id}' class='authors-name') #{author.firstname} #{author.lastname}
               p(class='authors-bio') #{author.bio}
 
-  div.footer
-    p(id='footer-text') footer goes here
+    div.footer
+      form(action="/books", method="GET")
+        input(type='text' name='search' class='search')
+        input(type='submit' value='search')

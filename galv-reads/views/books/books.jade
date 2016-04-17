@@ -37,7 +37,7 @@ html
               p(class='books-genre') #{book[0].genre}
               p(class='books-description') #{book[0].description}
 
-  div.footer
-    form(action="/books", method="GET")
-      input(type='text' name='search' class='search')
-      input(type='submit' value='search')
+    div.footer
+      form(action="/books", method="GET")
+        input(type='text' name='search' class='search')
+        input(type='submit' value='search')
