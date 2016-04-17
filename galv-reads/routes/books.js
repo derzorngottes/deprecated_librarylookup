@@ -50,7 +50,7 @@ router.get('/books/genre/:genre', function(req, res, next) {
 
 router.post('/books', function(req, res, next) {
   bookmethods.addBook(req.body).then(function() {
-    res.redirect('books');
+    res.redirect('/books');
   });
 });
 
@@ -74,7 +74,7 @@ router.get('/books/:id/delete', function(req, res, next) {
 
 router.delete('/books/:id', function(req, res, next) {
   bookmethods.deleteBook(req.params.id).then(function() {
-    res.redirect('books');
+    res.redirect('/books');
   });
 });
 
