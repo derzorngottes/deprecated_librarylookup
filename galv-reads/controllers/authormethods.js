@@ -7,8 +7,8 @@ module.exports = {
   getAuthorFromName: function(queryFirst, queryLast) {
     return knex('authors').where({ firstname: queryFirst, lastname: queryLast }).first();
   },
-  getAuthorFromId: function(queryId) {
-    return knex('authors').where({ id: queryId}).first();
+  getAuthorByGenre: function(queryGenre) {
+
   },
   addAuthor: function(authorData) {
     return knex('authors').insert({ firstname: authorData.firstname, lastname: authorData.lastname, portraiturl: authorData.portraiturl, bio: authorData.bio, books: authorData.books });
