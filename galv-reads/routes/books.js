@@ -14,6 +14,8 @@ var router = express.Router();
 var methodOverride = require('method-override');
 var bookmethods = require('../controllers/bookmethods.js');
 var authormethods = require('../controllers/authormethods.js');
+var _ = require('lodash');
+var object = require('lodash/fp/object');
 
 router.use(methodOverride('_method'));
 
@@ -37,8 +39,8 @@ router.get('/books/new', function(req, res, next) {
 });
 
 router.get('/books/:id', function(req, res, next) {
-  bookmethods.getBookFromId(req.params.id).then(function(record) {
-    res.render('books/display', { genre: false, thisBook: record });
+  bookmethods.booksJoinAuthors().then(function(records) {
+    res.render('books/display', { genre: false, thisBook: records[req.params.id] })
   });
 });
 

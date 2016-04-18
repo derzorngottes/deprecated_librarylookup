@@ -18,10 +18,12 @@ block content
         p description: #{ book.description }
 
     else
-      h1 title: #{thisBook.title}
-      h1 genre: #{thisBook.genre}
-      h1 authors: #{thisBook.authors}
-      p description: #{thisBook.description}
+      h1 title: #{thisBook[0].title}
+      h1 genre: #{thisBook[0].genre}
+      h1 authors:
+        for author in thisBook[1]
+          p(class=byliner) #{author}
+      p description: #{thisBook[0].description}
 
       form(action="/edit", method="post")
         div

@@ -1,4 +1,5 @@
 var knex = require('../db/knex');
+var _ = require('lodash');
 
 module.exports = {
   getAllBooks: function() {
@@ -20,7 +21,7 @@ module.exports = {
       return indexer;
     });
   },
-  getBookFromId: function(queryId) {
+  getBookFromId: function(queryId, books) {
     return knex('books').where({ id: queryId }).first();
   },
   getBookByGenre: function(queryGenre) {
