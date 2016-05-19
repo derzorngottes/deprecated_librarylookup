@@ -1,19 +1,9 @@
-/* to do
-
-1. Make edit, add, and delete routes work for books and authors independently
-2. Then alter the routes so that they remove the whole record and re-insert it
-3. Then add user validations following method from Finder example
-4. Then add error handling
-5. Then tidy up layout
-
-
-*/
-
 var express = require('express');
 var router = express.Router();
 var methodOverride = require('method-override');
 var bookmethods = require('../controllers/bookmethods.js');
 var authormethods = require('../controllers/authormethods.js');
+var helpers = require('../controllers/helpers.js');
 var _ = require('lodash');
 var object = require('lodash/fp/object');
 
@@ -46,7 +36,9 @@ router.get('/books/:id', function(req, res, next) {
 
 router.get('/books/genre/:genre', function(req, res, next) {
   bookmethods.getBookByGenre(req.params.genre).then(function(records) {
-    res.render('books/display', { genre: true, booksByGenre: records });
+    var justBooks = helpers.getIds(records);
+    console.log(justBooks);
+    res.render('books/display', { genre: true, booksByGenre: justBooks });
   });
 });
 
