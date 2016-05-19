@@ -27,7 +27,7 @@ module.exports = {
   getBookByGenre: function(queryGenre) {
     var query = queryGenre.charAt(0).toUpperCase() + queryGenre.slice(1);
 
-    knex.select().from('books').innerJoin('books_authors', 'books.id', 'books_authors.bookid').innerJoin('authors', 'books_authors.authorid', 'authors.id').where({ genre: query }).then(function(results) {
+    return knex.select().from('books').innerJoin('books_authors', 'books.id', 'books_authors.bookid').innerJoin('authors', 'books_authors.authorid', 'authors.id').where({ genre: query }).then(function(results) {
       var indexer = {};
       for(var i=0; i <results.length; i++){
         if(!(results[i].bookid in indexer)) {

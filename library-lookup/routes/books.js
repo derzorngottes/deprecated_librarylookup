@@ -46,7 +46,6 @@ router.get('/books/:id', function(req, res, next) {
 
 router.get('/books/genre/:genre', function(req, res, next) {
   bookmethods.getBookByGenre(req.params.genre).then(function(records) {
-    console.log(records);
     res.render('books/display', { genre: true, booksByGenre: records });
   });
 });
