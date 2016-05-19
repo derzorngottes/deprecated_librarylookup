@@ -108,10 +108,27 @@ a {
 .footer {
   background-color: #fbae17;
   position: absolute;
+  padding-left: 140px;
+  padding-top: 10px;
   left: 0;
   bottom: 0;
   height: 15%;
   width: 100%;
   font-weight: 900;
   font-size: 2.5em;
+}
+
+.search {
+  width: 240px;
+  height: 30px;
+  font-size: 30px;
+}
+
+.searchBtn {
+  width: 120px;
+  height: 35px;
+  border: none;
+  margin-bottom: 4px;
+  font-size: 20px;
+  vertical-align: middle;
 }
