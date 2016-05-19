@@ -65,7 +65,7 @@ a {
 .books-img {
   position: fixed;
   top: 30%;
-  left: 53%;
+  left: 50%;
   width: 0;
 	height: 0;
 	border-left: 160px solid transparent;
@@ -75,13 +75,26 @@ a {
 
 .authors-span, .books-span {
     font-family: "Helvetica", sans-serif;
+    font-size: 30px;
+}
+
+.authors-span a {
+  text-decoration: none;
+  color: #fbae17;
+}
+
+.books-span a {
+  text-decoration: none;
+  color: #fe9f97;
 }
 
 .books-span {
+  font-size: 30px;
   position: absolute;
   top: 150px;
   right: 0.5;
   left: 0.5;
+  margin-left: -37px;
 }
 
 #logo {
