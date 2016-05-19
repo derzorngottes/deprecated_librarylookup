@@ -58,9 +58,8 @@ module.exports = {
     return knex('books').insert({ title: metadata.title, genre: metadata.genre, coverUrl: metadata.coverUrl, description: metadata.description, authors: metadata.authors });
   },
 
-  editBook: function(metadata) {
-    console.log(metadata);
-    return knex('books').where({ id: metadata.id }).first().update({ title: metadata.title, genre: metadata.genre, coverUrl: metadata.coverUrl, description: metadata.description, authors: metadata.authors });
+  editBook: function(metadata, bookId) {
+    return knex('books').where({ id: bookId }).first().update({ title: metadata.booktitle, genre: metadata.genre, coverurl: metadata.coverurl, description: metadata.description });
   },
 
   deleteBook: function(queryId) {

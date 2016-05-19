@@ -49,14 +49,13 @@ router.post('/books', function(req, res, next) {
 
 router.get('/books/:id/edit', function(req, res, next) {
   bookmethods.getBookFromId(req.params.id).then(function(record) {
-    console.log(record);
     res.render('books/edit', { thisBook: record });
   });
 });
 
-router.put('/books/:id', function(req, res, next) {
-  bookmethods.editBook(req.body).then(function(record) {
-    res.redirect('books/' + req.params.id);
+router.post('/books/:id', function(req, res, next) {
+  bookmethods.editBook(req.body, req.params.id).then(function(record) {
+    res.redirect('/books/' + req.params.id);
   });
 });
 
