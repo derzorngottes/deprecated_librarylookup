@@ -10,7 +10,7 @@ block content
         p Person
 
   div.container
-    form(action="/books" + thisBook.id + '/?_method=PUT', method="POST")
+    form(action="/books" + thisBook.bookid + '/?_method=PUT', method="POST")
     div
       label(for="book-title") Title:
       br

@@ -37,7 +37,6 @@ router.get('/books/:id', function(req, res, next) {
 router.get('/books/genre/:genre', function(req, res, next) {
   bookmethods.getBookByGenre(req.params.genre).then(function(records) {
     var justBooks = helpers.getIds(records);
-    console.log(justBooks);
     res.render('books/display', { genre: true, booksByGenre: justBooks });
   });
 });
@@ -50,6 +49,7 @@ router.post('/books', function(req, res, next) {
 
 router.get('/books/:id/edit', function(req, res, next) {
   bookmethods.getBookFromId(req.params.id).then(function(record) {
+    console.log(record);
     res.render('books/edit', { thisBook: record });
   });
 });

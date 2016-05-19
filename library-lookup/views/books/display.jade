@@ -27,11 +27,11 @@ block content
 
       form(action="/edit", method="post")
         div
-          a(href="/books/" + thisBook.id + "/edit") Edit
+          a(href="/books/" + thisBook[0].bookid + "/edit") Edit
 
       form(action="/delete", method="post")
         div
-          a(href="/books/" + thisBook.id + "/delete") Delete
+          a(href="/books/" + thisBook[0].bookid + "/delete") Delete
 
       form(action="/", method="get")
         div
