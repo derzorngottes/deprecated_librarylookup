@@ -2,14 +2,37 @@
 <html>
   <head>
     <meta name='vieport' content='initial-scale=1, maximum-scale=1, user-scalable=no'/>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <title>Library Lookup</title>
 
-    <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css"/>
+    <link rel='stylesheet' href='https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css'/>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=EB+Garamond|Playfair+Display:400,900'/>
     <link rel='stylesheet' href='../stylesheets/style.css'/>
   </head>
   <body>
+    <header>
+      <div class='navbar navbar-default navbar-fixed-top title-bar'>
+        <a class='navbar-brand' href='/'><img src='/assets/book-icon2.png' height='50'/></a>
+        <ul class='nav navbar-nav'>
+          <li class='nav-item'>
+            <a class='nav-link' href='/auth/meetup'><span class='t-bar' id='header-text'>Library Lookup</span></a>
+          </li>
+          <li class='nav-item pull-xs-right'>
+            <a class='dropdown-item' href='/users'>Account</a>
+          </li>
+        </ul>
+      </div>
+    </header>
 
+    <div class='container-fluid' style='width:100%'>
+      {{{ body }}}
+    </div>
+
+    <footer class='footer'>
+      <input type='text' name='searchbar' class='search'>
+      <input type='button' name='search' value='search' class='searchBtn'>
+    </footer>
+
+    <script type='text/javascript' src='/scripts/handlebars-0.9.0.pre.4.js' />
   </body>
 </html>
